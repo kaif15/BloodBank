@@ -1,0 +1,25 @@
+div.col-md-12{
+  margin:auto;
+  margin-top:50px;
+}
+
+img{
+  background:url(../../assets/img/C:\Users\fauzu\Pictures\f2c43e4304abcbd78e81c243a33bfb54.jpg)no-repeat;
+}
+
+div.form-group{
+  max-width:30%;
+}
+
+body{
+  background:url(../../assets/img/C:\Users\fauzu\Pictures\f2c43e4304abcbd78e81c243a33bfb54.jpg) no-repeat;
+  background-size:cover;
+}
+
+form{
+  padding-left:20px;
+  background-color:rgba(255,255,255,0.6);
+  padding-top:20px;
+  padding-bottom:20px;
+}
+
