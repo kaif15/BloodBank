@@ -1,0 +1,15 @@
+POST Problems:
+
+Date format American make Bangladeshi
+
+Previous Transfusion Related to reaction
+Previous reaction related to reaction type
+
+
+year taking too many input chars
+
+final date of signature did not have time as input
+
+signed should be radio button
+
+provided product starts at 0
