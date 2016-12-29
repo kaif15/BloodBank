@@ -8,6 +8,7 @@
     <link rel='stylesheet prefetch' href='http://fonts.googleapis.com/css?family=Open+Sans:600'>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    <?php include_once "php_includes.php";?>
     <script type="text/javascript">
     function disablefield(){
         if (document.getElementById('PreviousTransfusionNO').checked == 1){
@@ -19,7 +20,21 @@
           document.getElementById('TransfusionReactionYES').disabled='';
           document.getElementById('TransfusionReactionNO').disabled='';
           document.getElementById('TransfusionReactionYES').value='Allowed';
+          document.getElementById('TransfusionReactionNO').value='Allowed';
           }
+          if (document.getElementById('TransfusionReactionNO').checked == 1){
+            document.getElementById('Fever').disabled='disabled';
+            document.getElementById('Allergic').disabled='disabled';
+            document.getElementById('Anaphylactic').disabled='disabled';
+            document.getElementById('ReactionMisTransfusion').disabled='disabled';
+            document.getElementById('etc').disabled='disabled';
+          }else{
+            document.getElementById('Fever').disabled='';
+            document.getElementById('Allergic').disabled='';
+            document.getElementById('Anaphylactic').disabled='';
+            document.getElementById('ReactionMisTransfusion').disabled='';
+            document.getElementById('etc').disabled='';
+            }
         }
 </script>
 
@@ -55,7 +70,7 @@
           </div>
           <div style=margin-top:20px>
             <label for="DateOfAdmission">Date of Admission</label>
-            <input style=float:right;margin-right:50px;margin-top:-5px;width:45% type="date" class="form-control" name="DateOfAdmission" placeholder="" >
+            <input style=float:right;margin-right:50px;margin-top:-5px;width:45% type="date" class="form-control" value="<?php echo $today;?>" name="DateOfAdmission" placeholder="" >
           </div>
 
         </div>
@@ -63,7 +78,7 @@
         <div class="col-xs-5 col-form-label">
             <div>
               <label for="DateORequest">Date of Request</label>
-              <input style=float:right;margin-right:50px;margin-top:-5px;width:45% type="date" class="form-control" name="DateOfRequest" placeholder="" >
+              <input style=float:right;margin-right:50px;margin-top:-5px;width:45% type="date" class="form-control" value="<?php echo $today;?>" name="DateOfRequest" placeholder="" >
             </div>
             <div style=margin-top:20px>
               <label for="Age">Age</label>
@@ -146,15 +161,15 @@
           </div>
           <div style=margin-top:20px>
             <label class="form-check-label"><for="ReactionType">Type of Reaction</label>
-            <input style=margin-left:10px id="Fever" type="checkbox" class="check"  name="ReactionFever" value="">
+            <input style=margin-left:10px id="Fever" type="checkbox" class="check"  name="ReactionFever" value="" onChange="disablefield()">
              <label style=margin-left:10px for="Fever"><span class="icon"></span> Fever</label>
-             <input style=margin-left:10px id="Allergic" type="checkbox" class="check"  name="ReactionAllergic" value="">
+             <input style=margin-left:10px id="Allergic" type="checkbox" class="check"  name="ReactionAllergic" value="" onChange="disablefield()">
               <label style=margin-left:10px for="Allergic"><span class="icon"></span> Allergic</label>
-              <input style=margin-left:10px id="Anaphylactic" type="checkbox" class="check"  name="Anaphylactic" value="">
+              <input style=margin-left:10px id="Anaphylactic" type="checkbox" class="check"  name="Anaphylactic" value="" onChange="disablefield()">
                <label style=margin-left:10px for="Anaphylactic"><span class="icon"></span> Anaphylactic</label>
-               <input style=margin-left:10px id="ReactionMisTransfusion" type="checkbox" class="check"  name="ReactionMisTransfusion" value="">
+               <input style=margin-left:10px id="ReactionMisTransfusion" type="checkbox" class="check"  name="ReactionMisTransfusion" value="" onChange="disablefield()">
                 <label style=margin-left:10px for="ReactionMisTransfusion"><span class="icon"></span> Mismatch Transfusion</label>
-            <input style=;width:45%; type="text" class="form-control" name="etc" placeholder="etc">
+            <input style=;width:45%; type="text" class="form-control" id="etc" name="etc" placeholder="etc" onChange="disablefield()">
           </div>
         </div>
 
@@ -177,7 +192,7 @@
               </div>
               <div style=margin-top:25px>
                 <input id="RequestAntibody" type="checkbox" class="check" name="RequestAntibody" value="" unchecked>
-                <label for="RequestAntibody"><span class="icon"></span> Antibody detection / titration/nameentification</label>
+                <label for="RequestAntibody"><span class="icon"></span> Antibody detection / titration / identification</label>
               </div>
               <div style=margin-top:25px>
                 <input id="RequestPheno" type="checkbox" class="check" name="RequestPheno" value="" unchecked>
@@ -189,7 +204,7 @@
               </div>
               <div  style=margin-top:25px>
                 <label style=font-weight:100 for="TimeDateReq">Time & Date </label>
-                <input style=float:right;margin-right:50px;margin-top:-5px;width:45%; type="datetime-local" class="form-control" name="TimeDateReq" placeholder="">
+                <input style=float:right;margin-right:50px;margin-top:-5px;width:45%; value="<?php echo $today;?>" type="datetime-local" class="form-control" name="TimeDateReq" placeholder="">
               </div>
               <div style=margin-top:25px>
                 <label style=font-weight:100 for=" nameOfDoctor">Name of Doctor</label>
@@ -212,50 +227,50 @@
           <div class = "col-xs-12 col-form-label">
               <div>
               <label style=font-weight:100;padding-top:8px for="FreshWholeBlood">Fresh Whole Blood</label>
-              <input style=width:22%;float:right;margin-right:180px; type="number" class="form-control" name="FreshBlood" value="0" placeholder="Units" min='0'>
+              <input style=width:22%;float:right;margin-right:180px; id="FreshWholeBlood" type="number" class="form-control" name="FreshBlood" value="0" placeholder="Units" min='0'>
             </div>
             <div style=margin-top:25px>
               <label style=font-weight:100;padding-top:8px for="WholeBlood">Whole Blood</label>
-              <input style=width:22%;float:right;margin-right:180px type="number" class="form-control" name="WholeBlood" value="0" placeholder="Units" min='0'>
+              <input style=width:22%;float:right;margin-right:180px; id="WholeBlood" type="number" class="form-control" name="WholeBlood" value="0" placeholder="Units" min='0'>
             </div>
             <div style=margin-top:25px>
               <label style=font-weight:100;padding-top:8px for="RedCell">Red Cell</label>
-              <input style=;width:22%;margin-top:5px;float:right;margin-right:180px type="number" class="form-control" name="RedCell" value="0" placeholder="Units" min='0'>
+              <input style=;width:22%;margin-top:5px;float:right;margin-right:180px; id="RedCell" type="number" class="form-control" name="RedCell" value="0" placeholder="Units" min='0'>
             </div>
             <div style=margin-top:25px>
               <label style=font-weight:100;padding-top:8px for="PlateletRichPlasma">Platelet rich plasma</label>
-              <input style=width:22%;margin-top:5px;float:right;margin-right:180px type="number" class="form-control" name="Platelet" value="0" placeholder="Units" min='0'>
+              <input style=width:22%;margin-top:5px;float:right;margin-right:180px; id="PlateletRichPlasma" type="number" class="form-control" name="Platelet" value="0" placeholder="Units" min='0'>
             </div>
             <div style=margin-top:25px>
               <label style=font-weight:100;padding-top:8px for="FreshPlasma">Fresh Plasma</label>
-              <input style=width:22%;margin-top:5px;float:right;margin-right:180px type="number" class="form-control" name="FreshPlasma" value="0" placeholder="Units" min='0'>
+              <input style=width:22%;margin-top:5px;float:right;margin-right:180px; id="FreshPlasma" type="number" class="form-control" name="FreshPlasma" value="0" placeholder="Units" min='0'>
             </div>
             <div style=margin-top:25px>
               <label style=font-weight:100;padding-top:8px for="PlateletConcentrate">Platelet Concentrate</label>
-              <input style=width:22%;margin-top:5px;float:right;margin-right:180px type="number" class="form-control" name="PlateletConcentrate" value="0" placeholder="Units" min='0'>
+              <input style=width:22%;margin-top:5px;float:right;margin-right:180px id="PlateletConcentrate" type="number" class="form-control" name="PlateletConcentrate" value="0" placeholder="Units" min='0'>
             </div>
             <div style=margin-top:25px>
               <label style=font-weight:100;padding-top:8px for="FFP">F.F.P</label>
-              <input style=width:22%;margin-top:5px;float:right;margin-right:180px type="number" class="form-control" name="FFP" value="0" placeholder="Units" min='0'>
+              <input style=width:22%;margin-top:5px;float:right;margin-right:180px; id="FFP" type="number" class="form-control" name="FFP" value="0" placeholder="Units" min='0'>
             </div>
             <div style=margin-top:25px>
               <label style=font-weight:100;padding-top:8px for="Cryoprecipitate">Cryoprecipitate</label>
-              <input style=width:22%;margin-top:5px;float:right;margin-right:180px type="number" class="form-control" name="Cryoprecipitate" value="0" placeholder="Units" min='0'>
+              <input style=width:22%;margin-top:5px;float:right;margin-right:180px; id="Cryoprecipitate" type="number" class="form-control" name="Cryoprecipitate" value="0" placeholder="Units" min='0'>
             </div>
             <div style=margin-top:25px>
               <label style=font-weight:100;padding-top:8px for="ProteinRichPlasma">Protein rich / stored plasma</label>
-              <input style=width:22%;margin-top:5px;float:right;margin-right:180px type="number" class="form-control" name="ProteinRichPlasma" value="0" placeholder="Units" min='0'>
+              <input style=width:22%;margin-top:5px;float:right;margin-right:180px; id="ProteinRichPlasma" type="number" class="form-control" name="ProteinRichPlasma" value="0" placeholder="Units" min='0'>
             </div>
             <div style=margin-top:25px>
               <label style=font-weight:100;margin-top:10px for="Signature">Signature</label>
-              <select style=width:45%;margin-top:5px;float:right;margin-right:180px type="text" class="form-control" name="Signature" placeholder="">
+              <select style=width:45%;margin-top:5px;float:right;margin-right:180px; id="Signature" type="text" class="form-control" name="Signature" placeholder="">
                 <option value="Yes">Yes</option>
                 <option value="No">No</option>
               </select>
             </div>
             <div style=margin-top:50px;margin-bottom:50px>
               <label style=font-weight:100;margin-top:8px for="Date">Date</label>
-              <input style=width:45%;margin-top:5px;float:right;margin-right:180px type="date" class="form-control" name="DateSigned" placeholder="">
+              <input style=width:45%;margin-top:5px;float:right;margin-right:180px type="date" class="form-control" value="<?php echo $today;?>" name="DateSigned" placeholder="">
             </div>
           </div>
         </div>
